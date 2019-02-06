@@ -15,13 +15,13 @@ public class NumberVerifyRunner
 	{
 		Scanner keyboard = new Scanner(System.in);
 		//add in input
-		System.out.println("Enter a number");
+		System.out.println("Enter a number::");
 		int num = keyboard.nextInt();
 		if(NumberVerify.isEven(num) == true) {
-			System.out.println("Your number," + num + " is even");
+			System.out.println("Your number of " + num + " is even");
 		}
 		if(NumberVerify.isOdd(num) == true) {
-			System.out.println("Your number of" + num + " is odd");
+			System.out.println("Your number of " + num + " is odd");
 		}
 		//add in more test cases
 	}

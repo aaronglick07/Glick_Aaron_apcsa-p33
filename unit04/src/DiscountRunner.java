@@ -18,6 +18,6 @@ public class DiscountRunner
 		out.print("Enter the original bill amount :: ");
 		double amt = keyboard.nextDouble();
 		
-		System.out.println(Discount.getDiscountedBill(amt));
+		System.out.println("Your Bill Price:: " + Discount.getDiscountedBill(amt));
 	}
 }
