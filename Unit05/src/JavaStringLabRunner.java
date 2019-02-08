@@ -7,7 +7,7 @@ public class JavaStringLabRunner
 {
 	public static void main( String args[] )
 	{
-		BetweenSigns s = new BetweenSigns();
+		FirstLastVowel s = new FirstLastVowel();
 			
 		System.out.println(  s.go(  "dog#cat#pigaplus")    );
 		System.out.println(  s.go(  "pigs#apluscompsci#food")    );
