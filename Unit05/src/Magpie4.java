@@ -47,7 +47,22 @@ public class Magpie4
 		{
 			response = "Tell me more about your family.";
 		}
-
+		else if(findKeyword(statement, "dog") >= 0
+				|| findKeyword(statement, "cat") >= 0) {
+			response = "Tell me more about your pets";
+		}
+		else if(findKeyword(statement, "why") >= 0
+				|| findKeyword(statement, "y") >= 0) {
+			response = "Why not?";
+		}
+		else if(findKeyword(statement, "who") >= 0
+				|| findKeyword(statement, "what") >= 0) {
+			response = "I'm not to sure about that one";
+		}
+		else if(findKeyword(statement, "Hello") >= 0
+				|| findKeyword(statement, "Hi") >= 0) {
+			response = "Yo yo yo";
+		}
 		// Responses which require transformations
 		else if (findKeyword(statement, "I want to", 0) >= 0)
 		{
@@ -103,6 +118,7 @@ public class Magpie4
 	 * @param statement the user statement, assumed to contain "you" followed by "me"
 	 * @return the transformed statement
 	 */
+	
 	private String transformYouMeStatement(String statement)
 	{
 		//  Remove the final period, if there is one

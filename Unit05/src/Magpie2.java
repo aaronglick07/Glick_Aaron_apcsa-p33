@@ -42,6 +42,25 @@ public class Magpie2
 		{
 			response = "Tell me more about your family.";
 		}
+		else if (statement.indexOf("Dog") >=0 
+				|| statement.indexOf("cat") > 0) {
+			response = "Tell me more about your pets.";
+		}
+		else if (statement.indexOf("Mr Mauro") >= 0) {
+			response = "He sounds like a good teacher";
+		}
+		else if(statement.length() == 0) {
+			response = "say something please";
+		}
+		else if(statement.indexOf("Hello") >= 0) {
+			response = "Hello";
+		}
+		else if(statement.indexOf("How are you") >= 0) {
+			response = "Im super good";
+		}
+		else if (statement.indexOf("Whats going on") >= 0) {
+			response = "just fixing my binary units yo";
+		}
 		else
 		{
 			response = getRandomResponse();
