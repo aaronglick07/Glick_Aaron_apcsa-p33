@@ -30,13 +30,13 @@ public class LetterRemover
 
 	public String removeLetters()
 	{
-		int location = sentence.indexOf(lookFor);
-		String cleaned=sentence;
-		while(cleaned.contains(lookFor + "")) {
-			cleaned.substring(location);
-			location = sentence.indexOf(lookFor)
-		}
-		return cleaned;
+//		int location = sentence.indexOf(lookFor);
+//		while(sentence.indexOf(location)>0) {
+//			sentence = sentence.substring(location, location+1);
+//			location = sentence.indexOf(lookFor);
+//		}
+		
+		return sentence.replaceAll(lookFor + "", "");
 	}
 
 	public String toString()
