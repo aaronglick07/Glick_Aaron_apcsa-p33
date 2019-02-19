@@ -11,18 +11,23 @@ public class TriangleFive
 
 	public TriangleFive()
 	{
+		amount = 0;
 	}
 
 	public TriangleFive(char c, int amt)
 	{
+		letter = c;
+		amount = amt;
 	}
 
 	public void setLetter(char c)
 	{
+		letter = c;
 	}
 
 	public void setAmount(int amt)
 	{
+		amount = amt;
 	}
 
 	public String toString()
