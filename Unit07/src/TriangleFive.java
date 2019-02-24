@@ -33,6 +33,24 @@ public class TriangleFive
 	public String toString()
 	{
 		String output="";
+		char OGletter = letter;
+		for(int a = 0; a < amount; a++){
+			for (int i = amount; i > a; i--) {
+				for (int j = 0; j < i; j++) {
+					output+=letter;
+				}
+				output+=" ";
+				if(letter == 'Z'){
+					letter = 'A';
+				}
+				else{
+					letter++;
+				}
+			}
+			output+="\n";
+			letter = OGletter;
+			
+		}
 		return output;
 	}
 }
