@@ -1,5 +1,7 @@
 import java.util.List;
+import java.util.Random;
 import java.util.ArrayList;
+import java.util.Arrays;
 
 /**
  * The Deck class represents a shuffled deck of cards.
@@ -11,7 +13,7 @@ public class Deck {
 	/**
 	 * cards contains all the cards in the deck.
 	 */
-	private List<Card> cards;
+	private Card[] cards;
 
 	/**
 	 * size is the number of not-yet-dealt cards.
@@ -31,7 +33,24 @@ public class Deck {
 	 */
 	public Deck(String[] ranks, String[] suits, int[] values) {
 		/* *** TO BE IMPLEMENTED IN ACTIVITY 2 *** */
+		for (int i = 0; i < ranks.length; i++) {
+			this.cards[i] = new Card(ranks[i], suits[i], values[i]);
+		}
 	}
+
+
+	public Deck(List<Card> cards){
+		this.cards = (Card[]) cards.toArray();
+	}
+
+
+	public Deck(Card[] cards) {
+		// TODO Auto-generated constructor stub
+		this.cards = cards;
+	}
+
+
+
 
 
 	/**
@@ -40,6 +59,9 @@ public class Deck {
 	 */
 	public boolean isEmpty() {
 		/* *** TO BE IMPLEMENTED IN ACTIVITY 2 *** */
+		ArrayList<Card> temp = new ArrayList<Card>();
+		temp.addAll(Arrays.asList(cards));
+		return temp.isEmpty();
 	}
 
 	/**
@@ -48,6 +70,7 @@ public class Deck {
 	 */
 	public int size() {
 		/* *** TO BE IMPLEMENTED IN ACTIVITY 2 *** */
+		return cards.length;
 	}
 
 	/**
@@ -56,6 +79,26 @@ public class Deck {
 	 */
 	public void shuffle() {
 		/* *** TO BE IMPLEMENTED IN ACTIVITY 4 *** */
+		Random rand = new Random();
+		ArrayList<Card> temp = new ArrayList<Card>();
+		temp.addAll(Arrays.asList(cards));
+		ArrayList<Card> list = new ArrayList<>();
+		for(Card c : temp){
+			if(rand.nextBoolean()){
+				list.add(c);
+			}
+			else if(rand.nextBoolean()){
+				list.add(0,c);
+			}
+			else{
+				list.add(list.size()/2,c);
+			}
+		}
+		Card [] Shuffled = new Card[list.size()];
+		for (int i = 0; i < list.size(); i++) {
+			Shuffled[i] = list.get(i);
+		}
+		cards = Shuffled;
 	}
 
 	/**
@@ -65,6 +108,15 @@ public class Deck {
 	 */
 	public Card deal() {
 		/* *** TO BE IMPLEMENTED IN ACTIVITY 2 *** */
+		if (cards.length > 1) {
+			Card[] temp = new Card[cards.length-1];
+			Card r = cards[0];
+			for (int i = 0; i < temp.length; i++) {
+				temp[i] = cards[i+1];
+			}
+			return r;
+		}
+		return null;
 	}
 
 	/**
@@ -76,7 +128,7 @@ public class Deck {
 		String rtn = "size = " + size + "\nUndealt cards: \n";
 
 		for (int k = size - 1; k >= 0; k--) {
-			rtn = rtn + cards.get(k);
+			rtn = rtn + cards[k];
 			if (k != 0) {
 				rtn = rtn + ", ";
 			}
@@ -87,12 +139,12 @@ public class Deck {
 		}
 
 		rtn = rtn + "\nDealt cards: \n";
-		for (int k = cards.size() - 1; k >= size; k--) {
-			rtn = rtn + cards.get(k);
+		for (int k = cards.length - 1; k >= size; k--) {
+			rtn = rtn + cards[k];
 			if (k != size) {
 				rtn = rtn + ", ";
 			}
-			if ((k - cards.size()) % 2 == 0) {
+			if ((k - cards.length) % 2 == 0) {
 				// Insert carriage returns so entire deck is visible on console.
 				rtn = rtn + "\n";
 			}
