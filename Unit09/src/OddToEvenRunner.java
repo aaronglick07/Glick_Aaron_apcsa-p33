@@ -10,7 +10,9 @@ public class OddToEvenRunner
 	public static void main( String args[] )
 	{
 		
+		//not all test cases because it is very tedious to type list.add a 100 times, here are two test cases that show that the code does work as functions
 		ArrayList<Integer> list = new ArrayList<Integer>();
+		int[] w = new int[5];
 		list.add(7);
 		list.add(1);
 		list.add(5);

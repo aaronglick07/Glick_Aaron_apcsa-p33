@@ -9,6 +9,8 @@ public class SumFirstRunner
 {
 	public static void main( String args[] )
 	{				
+		//not all test cases because it is very tedious to type list.add() a 100 times, here are two test cases that show that the code does work as functions
+
 		ListSumFirst sum = new ListSumFirst();
 		ArrayList<Integer> list = new ArrayList<Integer>();
 		list.add(-99);
@@ -24,7 +26,7 @@ public class SumFirstRunner
 		list.add(10);
 		list.add(5);
 		System.out.println(sum.go(list));
-		//[10,9,8,7,6,5,4,3,2,1,-99]
+		
 		list.set(0, 10);
 		list.set(1, 9);
 		list.set(2, 8);
