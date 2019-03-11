@@ -14,6 +14,7 @@ public class Deck {
 	 * cards contains all the cards in the deck.
 	 */
 	private Card[] cards;
+	//List<Card> cards;
 
 	/**
 	 * size is the number of not-yet-dealt cards.
@@ -36,6 +37,18 @@ public class Deck {
 		for (int i = 0; i < ranks.length; i++) {
 			this.cards[i] = new Card(ranks[i], suits[i], values[i]);
 		}
+		size = cards.length;
+		shuffle();
+		/*
+		 cards = new ArrayListList<Cards>
+		 for(int i = o; i < ranks.length, i++){
+		 	for(String suitString : suits){
+		 		cards.add new Card(ranks[i], suits[i], values[i]);
+		 	}
+		 }
+		 size = cards.size
+		 shuffle();
+		 */
 	}
 
 
@@ -99,6 +112,16 @@ public class Deck {
 			Shuffled[i] = list.get(i);
 		}
 		cards = Shuffled;
+		/* for(int i = cards.size() -1; i > 0; i--){
+		 * 	int howMany = i + 1;
+		 * 	int start = 0;
+		 * 	int randPos = (int) (Math.random() * howMany) + start;
+		 * 	card temp = cards.get(i);
+		 * 	cards.set(i, cards.get(randPos));
+		 * 	cards.set(randPos,temp);
+		 * }
+		 * size = cards.size();
+		 */
 	}
 
 	/**
@@ -117,6 +140,7 @@ public class Deck {
 			return r;
 		}
 		return null;
+		
 	}
 
 	/**
