@@ -10,16 +10,16 @@ public class Word implements Comparable<Word>
 
 	public Word( String s )
 	{
+		word = s;
 	}
 
 	public int compareTo( Word rhs )
 	{		
-		
-		return 0;
+		return Integer.compare(this.toString().length(), rhs.toString().length());
 	}
 
 	public String toString()
 	{
-		return "";
+		return word;
 	}
 }
