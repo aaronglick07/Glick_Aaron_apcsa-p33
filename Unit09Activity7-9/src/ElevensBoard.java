@@ -99,7 +99,7 @@ public class ElevensBoard extends Board {
 		}
 		for (int i = 0; i < selectedCards.size(); i++) {
 			for (int j = 0; j < selectedCards.size(); j++) {
-				if(cards.get(i) + cards.get(k) == 11) {
+				if(cards.get(i) + cards.get(j) == 11) {
 					return true;
 				}
 			}
