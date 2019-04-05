@@ -34,8 +34,15 @@ public class Deck {
 	 */
 	public Deck(String[] ranks, String[] suits, int[] values) {
 		/* *** Implemented *** */
-		for (int i = 0; i < ranks.length; i++) {
-			this.cards[i] = new Card(ranks[i], suits[i], values[i]);
+		size = ranks.length*suits.length;
+		cards = new Card[size];
+		int index = 0;
+		for(int i = 0; i<suits.length;i++) {
+			for(int n = 0; n<ranks.length;n++) {
+				cards[index] = new Card(ranks[n], suits[i], values[n]) ;
+				
+				index++;
+			}
 		}
 		size = cards.length;
 		shuffle();
@@ -51,30 +58,16 @@ public class Deck {
 		 */
 	}
 
-
-	public Deck(List<Card> cards){
-		this.cards = (Card[]) cards.toArray();
-	}
-
-
-	public Deck(Card[] cards) {
-		// TODO Auto-generated constructor stub
-		this.cards = cards;
-	}
-
-
-
-
-
 	/**
 	 * Determines if this deck is empty (no undealt cards).
 	 * @return true if this deck is empty, false otherwise.
 	 */
 	public boolean isEmpty() {
 		/* *** Implemented *** */
-		ArrayList<Card> temp = new ArrayList<Card>();
-		temp.addAll(Arrays.asList(cards));
-		return temp.isEmpty();
+		if(size == 0) {
+			return true;
+		}
+		return false;
 	}
 
 	/**
@@ -83,7 +76,7 @@ public class Deck {
 	 */
 	public int size() {
 		/* *** Implemented *** */
-		return cards.length;
+		return size;
 	}
 
 	/**
@@ -92,26 +85,8 @@ public class Deck {
 	 */
 	public void shuffle() {
 		/* *** Implemented *** */
-		Random rand = new Random();
-		ArrayList<Card> temp = new ArrayList<Card>();
-		temp.addAll(Arrays.asList(cards));
-		ArrayList<Card> list = new ArrayList<>();
-		for(Card c : temp){
-			if(rand.nextBoolean()){
-				list.add(c);
-			}
-			else if(rand.nextBoolean()){
-				list.add(0,c);
-			}
-			else{
-				list.add(list.size()/2,c);
-			}
-		}
-		Card [] Shuffled = new Card[list.size()];
-		for (int i = 0; i < list.size(); i++) {
-			Shuffled[i] = list.get(i);
-		}
-		cards = Shuffled;
+		cards = Shuffler.selectionShuffle(cards);
+		size = cards.length;
 		/* for(int i = cards.size() -1; i > 0; i--){
 		 * 	int howMany = i + 1;
 		 * 	int start = 0;
@@ -131,15 +106,11 @@ public class Deck {
 	 */
 	public Card deal() {
 		/* *** Implemented *** */
-		if (cards.length > 1) {
-			Card[] temp = new Card[cards.length-1];
-			Card r = cards[0];
-			for (int i = 0; i < temp.length; i++) {
-				temp[i] = cards[i+1];
-			}
-			return r;
+		if(size==0) {
+			return null;
 		}
-		return null;
+		size--;
+		return cards[size];
 		
 	}
 

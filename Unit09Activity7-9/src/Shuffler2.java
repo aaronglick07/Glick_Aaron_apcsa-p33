@@ -1,7 +1,9 @@
+import java.util.Random;
+
 /**
  * This class provides a convenient way to test shuffling methods.
  */
-public class Shuffler {
+public class Shuffler2 {
 
 	/**
 	 * The number of consecutive shuffle steps to be performed in each call
@@ -18,40 +20,40 @@ public class Shuffler {
 	 * Tests shuffling methods.
 	 * @param args is not used.
 	 */
-	public static void main(String[] args) {
-		System.out.println("Results of " + SHUFFLE_COUNT +
-								 " consecutive perfect shuffles:");
-		int[] values1 = new int[VALUE_COUNT];
-		for (int i = 0; i < values1.length; i++) {
-			values1[i] = i;
-			}
-		for (int j = 1; j <= SHUFFLE_COUNT; j++) {
-			perfectShuffle(values1);
-			System.out.print("  " + j + ":");
-			for (int k = 0; k < values1.length; k++) {
-				System.out.print(" " + values1[k]);
-			}
-			System.out.println();
-		}
-		System.out.println();
-
-		System.out.println("Results of " + SHUFFLE_COUNT +
-								 " consecutive efficient selection shuffles:");
-		int[] values2 = new int[VALUE_COUNT];
-		for (int i = 0; i < values2.length; i++) {
-			values2[i] = i;
-			}
-		for (int j = 1; j <= SHUFFLE_COUNT; j++) {
-			selectionShuffle(values2);
-			System.out.print("  " + j + ":");
-			for (int k = 0; k < values2.length; k++) {
-				System.out.print(" " + values2[k]);
-			}
-			System.out.println();
-		}
-		System.out.println();
-	}
-
+//		public static void main(String[] args) {
+//		System.out.println("Results of " + SHUFFLE_COUNT +
+//								 " consecutive perfect shuffles:");
+//		int[] values1 = new int[VALUE_COUNT];
+//		for (int i = 0; i < values1.length; i++) {
+//			values1[i] = i;
+//			}
+//		for (int j = 1; j <= SHUFFLE_COUNT; j++) {
+//			perfectShuffle(values1);
+//			System.out.print("  " + j + ":");
+//			for (int k = 0; k < values1.length; k++) {
+//				System.out.print(" " + values1[k]);
+//			}
+//			System.out.println();
+//		}
+//		System.out.println();
+//
+//		System.out.println("Results of " + SHUFFLE_COUNT +
+//								 " consecutive efficient selection shuffles:");
+//		int[] values2 = new int[VALUE_COUNT];
+//		for (int i = 0; i < values2.length; i++) {
+//			values2[i] = i;
+//			}
+//		for (int j = 1; j <= SHUFFLE_COUNT; j++) {
+//			selectionShuffle(values2);
+//			System.out.print("  " + j + ":");
+//			for (int k = 0; k < values2.length; k++) {
+//				System.out.print(" " + values2[k]);
+//			}
+//			System.out.println();
+//		}
+//		System.out.println();
+//	}
+//
 
 	/**
 	 * Apply a "perfect shuffle" to the argument.
@@ -85,16 +87,18 @@ public class Shuffler {
 	 * An efficient version of this algorithm makes use of arrays to avoid
 	 * searching for an as-yet-unselected card.
 	 * @param values is an array of integers simulating cards to be shuffled.
+	 * @return 
 	 */
-	public static void selectionShuffle(int[] values) {
+	public static Card[] selectionShuffle(Card[] cards) {
 		/* *** Implemented *** */
-		int position;
-		int temp;
-		for (int i = values.length; i > 0; i--) {
-			position = (int)(Math.random() * i);
-			temp = values[position];
-			values[position] = values[i];
-			values[i] = temp;
+		Random rand = new Random();
+		for(int i = cards.length-1; i > 0; i--) {
+			int r = rand.nextInt(i);
+			Card temp = cards[i];
+			cards[i] = cards[r];
+			cards[r] = temp;
 		}
+		
+		return cards;
 	}
 }
