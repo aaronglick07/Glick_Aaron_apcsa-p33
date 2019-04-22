@@ -24,6 +24,29 @@ public class PictureTester
     beach.keepOnlyBlue();
     beach.explore();
   }
+  /** Method to test keepOnlyRed */
+  public static void testKeepOnlyRed()
+  {
+    Picture beach = new Picture("C:\\Users\\glicka0192\\Documents\\GitHub\\Glick_Aaron_apcsa-p33\\Unit16\\src\\images\\beach.jpg");
+    beach.explore();
+    beach.keepOnlyRed();
+    beach.explore();
+  }
+  /** Method to test keepOnlyGreen */
+  public static void testKeepOnlyGreen()
+  {
+    Picture beach = new Picture("C:\\Users\\glicka0192\\Documents\\GitHub\\Glick_Aaron_apcsa-p33\\Unit16\\src\\images\\beach.jpg");
+    beach.explore();
+    beach.keepOnlyGreen();
+    beach.explore();
+  }
+  /** Method to test testFixUnderWater */
+  public static void testFixUnderwater() {
+	  Picture water = new Picture("C:\\Users\\glicka0192\\Documents\\GitHub\\Glick_Aaron_apcsa-p33\\Unit16\\src\\images\\water.jpg");
+	  water.explore();
+	  water.fixUnderWater();
+	  water.explore();
+  }
   /** Method to test testGrayScale */
   public static void testGrayscale()
   {
@@ -89,22 +112,25 @@ public class PictureTester
     // uncomment a call here to run a test
     // and comment out the ones you don't want
     // to run
-    testZeroBlue(); 	//done
-    testKeepOnlyBlue();	//done
-    //testKeepOnlyRed();
-    //testKeepOnlyGreen();
-    testNegate();		//done
-    testGrayscale();	//done
-    //testFixUnderwater();
-    testMirrorVertical(); //done
-	testMirrorHorizontal(); //done
-    testMirrorTemple();		//done
+    //testZeroBlue(); 	//done
+    //testKeepOnlyBlue();	//done
+    //testKeepOnlyRed();	//done
+    //testKeepOnlyGreen();	//done
+    //testNegate();		//done
+    //testGrayscale();	//done
+    testFixUnderwater();
+    //testMirrorVertical(); //done
+	//testMirrorHorizontal(); //done
+    //testMirrorTemple();		//done
 	//testMirrorArms();
     //testMirrorGull();
     //testMirrorDiagonal();
-    testCollage();		//done
+    //testCollage();		//done
     //testCopy();
-    testEdgeDetection();	//done
+    //testEdgeDetection();	//done
+    
+    //don't worry about anything after this point
+    
     //testEdgeDetection2();
     //testChromakey();
     //testEncodeAndDecode();

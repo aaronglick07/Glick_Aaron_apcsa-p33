@@ -257,6 +257,35 @@ public class Picture extends SimplePicture
 		  }
 	  }
   }
+  public void keepOnlyRed(){
+	  Pixel[][] pixels= this.getPixels2D();
+	  for(Pixel[] row : pixels){
+		  for(Pixel p : row){
+			  p.setBlue(0);
+			  p.setGreen(0);
+		  }
+	  }
+  }
+  public void keepOnlyGreen(){
+	  Pixel[][] pixels= this.getPixels2D();
+	  for(Pixel[] row : pixels){
+		  for(Pixel p : row){
+			  p.setRed(0);
+			  p.setBlue(0);
+		  }
+	  }
+  }
+  public void fixUnderWater() {
+	  Pixel[][] pixels= this.getPixels2D();
+	  for(Pixel[] row : pixels){
+		  for(Pixel p : row){
+			  p.setBlue(p.getBlue() - 75);
+			  p.setGreen(p.getGreen() - 50);
+			  p.setRed(p.getRed() + 20);
+		  }
+	  }
+  }
+ 
   public void grayScale(){
 	  Pixel[][] pixels = this.getPixels2D();
 	  for(Pixel[] row : pixels){
