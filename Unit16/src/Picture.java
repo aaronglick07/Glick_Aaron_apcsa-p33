@@ -118,6 +118,22 @@ public class Picture extends SimplePicture
     } 
   }
   
+  public void mirrorHorizontal(){
+	  Pixel[][] pixels = this.getPixels2D();
+	  Pixel topPixel = null;
+	  Pixel bottomPixel = null;
+	  int height = pixels.length;
+	  for(int row = 0; row < height / 2; row++){
+		  for(int col = 0; col < pixels[0].length; col++){
+			  topPixel = pixels[row][col];
+			  bottomPixel = pixels[height - 1 - row][col];
+			  bottomPixel.setColor(topPixel.getColor());
+		  }
+	  }
+  }
+  
+  
+  
   /** Mirror just part of a picture of a temple */
   public void mirrorTemple()
   {
@@ -140,6 +156,20 @@ public class Picture extends SimplePicture
         rightPixel.setColor(leftPixel.getColor());
       }
     }
+  }
+  
+  public void mowTheLawn(){
+	  int mirrorpoint = 277;
+	  Pixel leftPixel = null;
+	  Pixel rightPixel = null;
+	  Pixel[][] pixels = this.getPixels2D();
+	  for(int row = 159; row < 329; row++){
+		  for(int col = 198; col < mirrorpoint; col++){
+			  leftPixel = pixels[row][col];
+			  rightPixel = pixels[row][mirrorpoint - col + mirrorpoint];
+			  rightPixel.setColor(leftPixel.getColor());
+		  }
+	  }
   }
   
   /** copy from the passed fromPic to the
@@ -176,8 +206,8 @@ public class Picture extends SimplePicture
   /** Method to create a collage of several pictures */
   public void createCollage()
   {
-    Picture flower1 = new Picture("flower1.jpg");
-    Picture flower2 = new Picture("flower2.jpg");
+    Picture flower1 = new Picture("C:\\Users\\AaronTheNerd\\Glick_Aaron_apcsa-p33\\Unit16\\src\\images\\flower1.jpg");
+    Picture flower2 = new Picture("C:\\Users\\AaronTheNerd\\Glick_Aaron_apcsa-p33\\Unit16\\src\\images\\flower2.jpg");
     this.copy(flower1,0,0);
     this.copy(flower2,100,0);
     this.copy(flower1,200,0);
@@ -187,7 +217,7 @@ public class Picture extends SimplePicture
     this.copy(flower1,400,0);
     this.copy(flower2,500,0);
     this.mirrorVertical();
-    this.write("collage.jpg");
+    this.write("C:\\Users\\AaronTheNerd\\Glick_Aaron_apcsa-p33\\Unit16\\src\\images\\640x480.jpg");
   }
   
   
@@ -196,23 +226,25 @@ public class Picture extends SimplePicture
     */
   public void edgeDetection(int edgeDist)
   {
-    Pixel leftPixel = null;
+    Pixel mainPixel = null;
     Pixel rightPixel = null;
+    Pixel bottomPixel = null;
     Pixel[][] pixels = this.getPixels2D();
-    Color rightColor = null;
-    for (int row = 0; row < pixels.length; row++)
+   Color mainColor = null;
+    for (int row = 0; row < pixels.length-1; row++)
     {
       for (int col = 0; 
            col < pixels[0].length-1; col++)
       {
-        leftPixel = pixels[row][col];
+        mainPixel = pixels[row][col];
         rightPixel = pixels[row][col+1];
-        rightColor = rightPixel.getColor();
-        if (leftPixel.colorDistance(rightColor) > 
-            edgeDist)
-          leftPixel.setColor(Color.BLACK);
+        bottomPixel = pixels[row+1][col];
+       mainColor = mainPixel.getColor();
+        if (rightPixel.colorDistance(mainColor) > 
+            edgeDist || bottomPixel.colorDistance(mainColor) > edgeDist)
+          mainPixel.setColor(Color.BLACK);
         else
-          leftPixel.setColor(Color.WHITE);
+          mainPixel.setColor(Color.WHITE);
       }
     }
   }
@@ -227,6 +259,35 @@ public class Picture extends SimplePicture
     beach.explore();
     beach.zeroBlue();
     beach.explore();
+  }
+  public void keepOnlyBlue(){
+	  Pixel[][] pixels= this.getPixels2D();
+	  for(Pixel[] row : pixels){
+		  for(Pixel p : row){
+			  p.setRed(0);
+			  p.setGreen(0);
+		  }
+	  }
+  }
+  public void grayScale(){
+	  Pixel[][] pixels = this.getPixels2D();
+	  for(Pixel[] row : pixels){
+		  for(Pixel p : row){
+			  int greenval = p.getGreen();
+			  p.setRed(greenval);
+			  p.setBlue(greenval);
+		  }
+	  }
+  }
+  public void negative(){
+	  Pixel[][] pixels = this.getPixels2D();
+	  for(Pixel[] row : pixels){
+		  for(Pixel p : row){
+			  p.setRed(255 - p.getRed());
+			  p.setGreen(255 - p.getGreen());
+			  p.setBlue(255 - p.getBlue());
+		  }
+	  }
   }
   
 } // this } is the end of class Picture, put all new methods before this
