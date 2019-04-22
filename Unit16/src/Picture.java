@@ -158,19 +158,7 @@ public class Picture extends SimplePicture
     }
   }
   
-  public void mowTheLawn(){
-	  int mirrorpoint = 277;
-	  Pixel leftPixel = null;
-	  Pixel rightPixel = null;
-	  Pixel[][] pixels = this.getPixels2D();
-	  for(int row = 159; row < 329; row++){
-		  for(int col = 198; col < mirrorpoint; col++){
-			  leftPixel = pixels[row][col];
-			  rightPixel = pixels[row][mirrorpoint - col + mirrorpoint];
-			  rightPixel.setColor(leftPixel.getColor());
-		  }
-	  }
-  }
+
   
   /** copy from the passed fromPic to the
     * specified startRow and startCol in the
@@ -206,8 +194,8 @@ public class Picture extends SimplePicture
   /** Method to create a collage of several pictures */
   public void createCollage()
   {
-    Picture flower1 = new Picture("C:\\Users\\AaronTheNerd\\Glick_Aaron_apcsa-p33\\Unit16\\src\\images\\flower1.jpg");
-    Picture flower2 = new Picture("C:\\Users\\AaronTheNerd\\Glick_Aaron_apcsa-p33\\Unit16\\src\\images\\flower2.jpg");
+    Picture flower1 = new Picture("C:\\Users\\glicka0192\\Documents\\GitHub\\Glick_Aaron_apcsa-p33\\Unit16\\src\\images\\flower1.jpg");
+    Picture flower2 = new Picture("C:\\Users\\glicka0192\\Documents\\GitHub\\Glick_Aaron_apcsa-p33\\Unit16\\src\\images\\flower2.jpg");
     this.copy(flower1,0,0);
     this.copy(flower2,100,0);
     this.copy(flower1,200,0);
@@ -217,7 +205,7 @@ public class Picture extends SimplePicture
     this.copy(flower1,400,0);
     this.copy(flower2,500,0);
     this.mirrorVertical();
-    this.write("C:\\Users\\AaronTheNerd\\Glick_Aaron_apcsa-p33\\Unit16\\src\\images\\640x480.jpg");
+    this.write("C:\\Users\\glicka0192\\Documents\\GitHub\\Glick_Aaron_apcsa-p33\\Unit16\\src\\images\\640x480.jpg");
   }
   
   
