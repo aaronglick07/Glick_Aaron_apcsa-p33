@@ -66,15 +66,23 @@ public class PictureTester
   /** Method to test mirrorVertical */
   public static void testMirrorVertical()
   {
-    Picture caterpillar = new Picture("C:\\Users\\glicka0192\\Documents\\GitHub\\Glick_Aaron_apcsa-p33\\Unit16\\src\\images\\caterpiller.jpg");
+    Picture caterpillar = new Picture("C:\\Users\\glicka0192\\Documents\\GitHub\\Glick_Aaron_apcsa-p33\\Unit16\\src\\images\\caterpillar.jpg");
     caterpillar.explore();
     caterpillar.mirrorVertical();
+    caterpillar.explore();
+  }
+
+  public static void testRightToLeft()
+  {
+    Picture caterpillar = new Picture("C:\\Users\\glicka0192\\Documents\\GitHub\\Glick_Aaron_apcsa-p33\\Unit16\\src\\images\\caterpillar.jpg");
+    caterpillar.explore();
+    caterpillar.RightToLeft();
     caterpillar.explore();
   }
   /** Method to test mirrorHorizontal */
   public static void testMirrorHorizontal()
   {
-    Picture caterpillar = new Picture("C:\\Users\\glicka0192\\Documents\\GitHub\\Glick_Aaron_apcsa-p33\\Unit16\\src\\images\\caterpiller.jpg");
+    Picture caterpillar = new Picture("C:\\Users\\glicka0192\\Documents\\GitHub\\Glick_Aaron_apcsa-p33\\Unit16\\src\\images\\caterpillar.jpg");
     caterpillar.explore();
     caterpillar.mirrorHorizontal();
     caterpillar.explore();
@@ -87,7 +95,11 @@ public class PictureTester
     temple.mirrorTemple();
     temple.explore();
   }
- 
+  /** Method to test mirrorArms*/
+  public static void testMirrorArms() {
+	  Picture snowman = new Picture("C:\\Users\\glicka0192\\Documents\\GitHub\\Glick_Aaron_apcsa-p33\\Unit16\\src\\images\\snowman.jpg");
+	  snowman.explore();
+  }
   /** Method to test the collage method */
   public static void testCollage()
   {
@@ -118,7 +130,7 @@ public class PictureTester
     //testKeepOnlyGreen();	//done
     //testNegate();		//done
     //testGrayscale();	//done
-    testFixUnderwater();
+    //testFixUnderwater();	//done
     //testMirrorVertical(); //done
 	//testMirrorHorizontal(); //done
     //testMirrorTemple();		//done
