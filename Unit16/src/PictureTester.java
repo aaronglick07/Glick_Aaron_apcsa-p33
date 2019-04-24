@@ -74,10 +74,25 @@ public class PictureTester
 
   public static void testRightToLeft()
   {
-    Picture caterpillar = new Picture("C:\\Users\\glicka0192\\Documents\\GitHub\\Glick_Aaron_apcsa-p33\\Unit16\\src\\images\\caterpillar.jpg");
-    caterpillar.explore();
-    caterpillar.RightToLeft();
-    caterpillar.explore();
+    Picture redCycle = new Picture("C:\\Users\\AaronTheNerd\\Glick_Aaron_apcsa-p33\\Unit16\\src\\images\\redMotorcycle.jpg");
+    redCycle.explore();
+    redCycle.RightToLeft();
+    redCycle.explore();
+  }
+  
+  public static void testBotToTop()
+  {
+    Picture redCycle = new Picture("C:\\Users\\AaronTheNerd\\Glick_Aaron_apcsa-p33\\Unit16\\src\\images\\redMotorcycle.jpg");
+    redCycle.explore();
+    redCycle.botToTop();
+    redCycle.explore();
+  }
+  public static void testMirrorDiagnol()
+  {
+    Picture beach = new Picture("C:\\Users\\AaronTheNerd\\Glick_Aaron_apcsa-p33\\Unit16\\src\\images\\beach.jpg");
+    beach.explore();
+    beach.mirrorDiagonal();
+    beach.explore();
   }
   /** Method to test mirrorHorizontal */
   public static void testMirrorHorizontal()
@@ -97,8 +112,17 @@ public class PictureTester
   }
   /** Method to test mirrorArms*/
   public static void testMirrorArms() {
-	  Picture snowman = new Picture("C:\\Users\\glicka0192\\Documents\\GitHub\\Glick_Aaron_apcsa-p33\\Unit16\\src\\images\\snowman.jpg");
+	  Picture snowman = new Picture("C:\\Users\\AaronTheNerd\\Glick_Aaron_apcsa-p33\\Unit16\\src\\images\\snowman.jpg");
 	  snowman.explore();
+	  snowman.mirrorArms();
+	  snowman.explore();
+  }
+  /** Method to test mirrorGull*/
+  public static void testMirrorGull() {
+	  Picture gull = new Picture("C:\\Users\\AaronTheNerd\\Glick_Aaron_apcsa-p33\\Unit16\\src\\images\\seagull.jpg");
+	  gull.explore();
+	  gull.mirrorGull();
+	  gull.explore();
   }
   /** Method to test the collage method */
   public static void testCollage()
@@ -107,7 +131,13 @@ public class PictureTester
     canvas.createCollage();
     canvas.explore();
   }
-  
+  public static void testCopy(){
+	  Picture copy =new Picture("C:\\Users\\AaronTheNerd\\Glick_Aaron_apcsa-p33\\Unit16\\src\\images\\640x480.jpg");
+	  Picture copied = new Picture("C:\\Users\\AaronTheNerd\\Glick_Aaron_apcsa-p33\\Unit16\\src\\images\\snowman.jpg");
+	  copy.explore();
+	  copy.copy(copied, 72, 120);
+	  copy.explore();
+  }
   /** Method to test edgeDetection */
   public static void testEdgeDetection()
   {
@@ -132,13 +162,15 @@ public class PictureTester
     //testGrayscale();	//done
     //testFixUnderwater();	//done
     //testMirrorVertical(); //done
+	//testRightToLeft();	//done
 	//testMirrorHorizontal(); //done
+	//testBotToTop();		//done
+	//testMirrorDiagnol();	//done
     //testMirrorTemple();		//done
-	//testMirrorArms();
-    //testMirrorGull();
-    //testMirrorDiagonal();
+	//testMirrorArms();		//done
+    //testMirrorGull();		//done
     //testCollage();		//done
-    //testCopy();
+    testCopy();
     //testEdgeDetection();	//done
     
     //don't worry about anything after this point
