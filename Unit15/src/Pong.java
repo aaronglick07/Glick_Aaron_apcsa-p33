@@ -129,21 +129,21 @@ public class Pong extends Canvas implements KeyListener, Runnable
 				}
 			}
 			
-			if (keys[1] == true) {
-				if (leftPaddle.getY() + leftPaddle.getHeight() < 540) {
+			if (keys[2] == true) {
+				if (leftPaddle.getY() > 10) {
 					leftPaddle.moveDownAndDraw(graphToBack);
 				}
 			}
 			
-			if (keys[2] == true) {
-				if (rightPaddle.getY() > 10) {
-					rightPaddle.moveUpAndDraw(graphToBack);
+			if (keys[3] == true) {
+				if (leftPaddle.getX() > 10) {
+					leftPaddle.moveRightAndDraw(graphToBack);
 				}
 			}
 			
-			if (keys[3] == true) {
-				if (rightPaddle.getY() + leftPaddle.getHeight() < 540) {
-					rightPaddle.moveDownAndDraw(graphToBack);
+			if (keys[2] == true) {
+				if (leftPaddle.getX() > 10) {
+					leftPaddle.moveLeftAndDraw(graphToBack);
 				}
 			}
 			
@@ -155,9 +155,9 @@ public class Pong extends Canvas implements KeyListener, Runnable
 		switch(toUpperCase(e.getKeyChar()))
 		{
 			case 'W' : keys[0]=true; break;
-			case 'Z' : keys[1]=true; break;
-			case 'I' : keys[2]=true; break;
-			case 'M' : keys[3]=true; break;
+			case 'A' : keys[1]=true; break;
+			case 'S' : keys[2]=true; break;
+			case 'D' : keys[3]=true; break;
 		}
 	}
 
@@ -166,9 +166,9 @@ public class Pong extends Canvas implements KeyListener, Runnable
 		switch(toUpperCase(e.getKeyChar()))
 		{
 			case 'W' : keys[0]=false; break;
-			case 'Z' : keys[1]=false; break;
-			case 'I' : keys[2]=false; break;
-			case 'M' : keys[3]=false; break;
+			case 'A' : keys[1]=false; break;
+			case 'S' : keys[2]=false; break;
+			case 'D' : keys[3]=false; break;
 		}
 	}
 

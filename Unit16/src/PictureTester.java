@@ -128,7 +128,7 @@ public class PictureTester
   public static void testCollage()
   {
     Picture canvas = new Picture("C:\\Users\\glicka0192\\Documents\\GitHub\\Glick_Aaron_apcsa-p33\\Unit16\\src\\images\\640x480.jpg");
-    canvas.createCollage();
+    canvas.createCollageOrignal();
     canvas.explore();
   }
   public static void testMyCollage()
@@ -171,9 +171,9 @@ public class PictureTester
     //testKeepOnlyBlue();	//done
     //testKeepOnlyRed();	//done
     //testKeepOnlyGreen();	//done
-    //testNegate();		//done
-    //testGrayscale();	//done
-    //testFixUnderwater();	//done
+    testNegate();		//done
+    testGrayscale();	//done
+    testFixUnderwater();	//done
     //testMirrorVertical(); //done
 	//testRightToLeft();	//done
 	//testMirrorHorizontal(); //done
@@ -183,7 +183,7 @@ public class PictureTester
 	//testMirrorArms();		//done
     //testMirrorGull();		//done
     //testCollage();		//done
-	testMyCollage();
+	//testMyCollage();		//done
     //testCopy();		//done
 	//testCopy2();		//done
     //testEdgeDetection();	//done

@@ -27,6 +27,6 @@ public class TheGame extends JFrame
 
 	public static void main( String args[] )
 	{
-	k	TheGame run = new TheGame();
+		TheGame run = new TheGame();
 	}
 }

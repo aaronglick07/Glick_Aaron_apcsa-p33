@@ -59,7 +59,17 @@ public class Paddle extends Block
 	   draw(window,getColor());
 
    }
-
+   public void moveLeftAndDraw(Graphics window) {
+	draw(window, Color.white);
+	setPos(getX(), getY() + getSpeed());
+	draw(window, getColor());
+   }
+   public void moveRightAndDraw(Graphics window) {
+		draw(window, Color.white);
+		setPos(getX(), getY() + getSpeed());
+		draw(window, getColor());
+	   }
+   
    //add get methods
    public int getSpeed(){
 	   return speed;

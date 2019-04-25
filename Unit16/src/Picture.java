@@ -282,7 +282,7 @@ for (int fromCol = 0, toCol = startCol;
 }   
 }
   /** Method to create a collage of several pictures */
-  public void createCollage()
+  public void createCollageOrignal()
   {
     Picture flower1 = new Picture("C:\\Users\\glicka0192\\Documents\\GitHub\\Glick_Aaron_apcsa-p33\\Unit16\\src\\images\\flower1.jpg");
     Picture flower2 = new Picture("C:\\Users\\glicka0192\\Documents\\GitHub\\Glick_Aaron_apcsa-p33\\Unit16\\src\\images\\flower2.jpg");
@@ -300,16 +300,16 @@ for (int fromCol = 0, toCol = startCol;
   
   public void createMyCollage()
   {
-    Picture flower1 = new Picture("C:\\Users\\glicka0192\\Documents\\GitHub\\Glick_Aaron_apcsa-p33\\Unit16\\src\\images\\flower1.jpg");
-    Picture flower2 = new Picture("C:\\Users\\glicka0192\\Documents\\GitHub\\Glick_Aaron_apcsa-p33\\Unit16\\src\\images\\flower2.jpg");
-    this.copy(flower1,0,0);
-    this.copy(flower2,100,0);
-    this.copy(flower1,200,0);
-    Picture flowerNoBlue = new Picture(flower2);
-    Picture flowerGray = new Picture(flower1);
+    Picture flower3 = new Picture("C:\\Users\\glicka0192\\Documents\\GitHub\\Glick_Aaron_apcsa-p33\\Unit16\\src\\images\\flower1.jpg");
+    Picture flower4 = new Picture("C:\\Users\\glicka0192\\Documents\\GitHub\\Glick_Aaron_apcsa-p33\\Unit16\\src\\images\\flower2.jpg");
+    this.copy(flower3,0,0);
+    this.copy(flower4,100,0);
+    this.copy(flower3,200,0);
+    Picture flowerNoBlue = new Picture(flower4);
+    Picture flowerGray = new Picture(flower3);
     flowerNoBlue.fixUnderWater();
     flowerGray.grayScale();
-    Picture flowerKeepOnlyRed = new Picture(flower1);
+    Picture flowerKeepOnlyRed = new Picture(flower4);
     flowerKeepOnlyRed.keepOnlyRed();
     this.copy(flowerNoBlue,300,200);
     this.copy(flowerGray,400,300);
