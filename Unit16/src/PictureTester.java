@@ -131,6 +131,12 @@ public class PictureTester
     canvas.createCollage();
     canvas.explore();
   }
+  public static void testMyCollage()
+  {
+    Picture canvas = new Picture("C:\\Users\\glicka0192\\Documents\\GitHub\\Glick_Aaron_apcsa-p33\\Unit16\\src\\images\\640x480.jpg");
+    canvas.createMyCollage();
+    canvas.explore();
+  }
   public static void testCopy(){
 	  Picture copy =new Picture("C:\\Users\\glicka0192\\Documents\\GitHub\\Glick_Aaron_apcsa-p33\\Unit16\\src\\images\\640x480.jpg");
 	  Picture copied = new Picture("C:\\Users\\glicka0192\\Documents\\GitHub\\Glick_Aaron_apcsa-p33\\Unit16\\src\\images\\snowman.jpg");
@@ -177,6 +183,7 @@ public class PictureTester
 	//testMirrorArms();		//done
     //testMirrorGull();		//done
     //testCollage();		//done
+	testMyCollage();
     //testCopy();		//done
 	//testCopy2();		//done
     //testEdgeDetection();	//done

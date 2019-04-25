@@ -298,7 +298,25 @@ for (int fromCol = 0, toCol = startCol;
     this.write("C:\\Users\\glicka0192\\Documents\\GitHub\\Glick_Aaron_apcsa-p33\\Unit16\\src\\images\\640x480.jpg");
   }
   
-  
+  public void createMyCollage()
+  {
+    Picture flower1 = new Picture("C:\\Users\\glicka0192\\Documents\\GitHub\\Glick_Aaron_apcsa-p33\\Unit16\\src\\images\\flower1.jpg");
+    Picture flower2 = new Picture("C:\\Users\\glicka0192\\Documents\\GitHub\\Glick_Aaron_apcsa-p33\\Unit16\\src\\images\\flower2.jpg");
+    this.copy(flower1,0,0);
+    this.copy(flower2,100,0);
+    this.copy(flower1,200,0);
+    Picture flowerNoBlue = new Picture(flower2);
+    Picture flowerGray = new Picture(flower1);
+    flowerNoBlue.fixUnderWater();
+    flowerGray.grayScale();
+    Picture flowerKeepOnlyRed = new Picture(flower1);
+    flowerKeepOnlyRed.keepOnlyRed();
+    this.copy(flowerNoBlue,300,200);
+    this.copy(flowerGray,400,300);
+    this.copy(flowerKeepOnlyRed,500,400);
+    this.mirrorVertical();
+    this.write("C:\\Users\\glicka0192\\Documents\\GitHub\\Glick_Aaron_apcsa-p33\\Unit16\\src\\images\\640x480.jpg");
+  }
   /** Method to show large changes in color 
     * @param edgeDist the distance for finding edges
     */
