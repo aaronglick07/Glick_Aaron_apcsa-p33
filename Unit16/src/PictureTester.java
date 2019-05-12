@@ -1,4 +1,4 @@
-/**
+ /**
  * This class contains class (static) methods
  * that will help you test the Picture class 
  * methods.  Uncomment the methods and the code
@@ -159,6 +159,17 @@ public class PictureTester
     swan.edgeDetection(10);
     swan.explore();
   }
+  public static void testEncode(){
+	  Picture beach = new Picture("C:\\Users\\AaronTheNerd\\Glick_Aaron_apcsa-p33\\Unit16\\src\\images\\beach.jpg");
+	  Picture code = new Picture("C:\\Users\\AaronTheNerd\\Glick_Aaron_apcsa-p33\\Unit16\\src\\images\\msg.jpg");
+	  beach.explore();
+	  beach.encode2(code);
+	  beach.explore();
+	  Picture decoded = beach.decode2();
+	  decoded.explore();
+	  
+	  
+  }
   
   /** Main method for testing.  Every class can have a main
     * method in Java */
@@ -171,9 +182,9 @@ public class PictureTester
     //testKeepOnlyBlue();	//done
     //testKeepOnlyRed();	//done
     //testKeepOnlyGreen();	//done
-    testNegate();		//done
-    testGrayscale();	//done
-    testFixUnderwater();	//done
+    //testNegate();		//done
+    //testGrayscale();	//done
+    //testFixUnderwater();	//done
     //testMirrorVertical(); //done
 	//testRightToLeft();	//done
 	//testMirrorHorizontal(); //done
@@ -192,7 +203,7 @@ public class PictureTester
     
     //testEdgeDetection2();
     //testChromakey();
-    //testEncodeAndDecode();
+    testEncode();
     //testGetCountRedOverValue(250);
     //testSetRedToHalfValueInTopHalf();
     //testClearBlueOverValue(200);
