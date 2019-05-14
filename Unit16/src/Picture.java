@@ -141,11 +141,11 @@ public class Picture extends SimplePicture {
 		for (int row = 0; row < this.getHeight(); row++) {
 			for (int col = 0; col < this.getWidth(); col++) {
 				currPixel = currPixels[row][col];
-				if (currPixel.getBlue() % 2 == 1)
-					currPixel.setBlue(currPixel.getBlue() - 1);
+				if (currPixel.getRed() % 2 == 1)
+					currPixel.setRed(currPixel.getRed() - 1);
 				messagePixel = messagePixels[row][col];
 				if (messagePixel.colorDistance(Color.BLACK) < 50) {
-					currPixel.setRed(currPixel.getBlue() + 1);
+					currPixel.setRed(currPixel.getRed() + 1);
 					count++;
 				}
 			}
@@ -167,7 +167,7 @@ public class Picture extends SimplePicture {
 			for (int col = 0; col < this.getWidth(); col++) {
 				currPixel = pixels[row][col];
 				messagePixel = messagePixels[row][col];
-				if (currPixel.getBlue() % 2 == 1) {
+				if (currPixel.getRed() % 2 == 1) {
 					messagePixel.setColor(Color.BLACK);
 					count++;
 				}
