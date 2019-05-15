@@ -163,10 +163,9 @@ public class PictureTester
 	  Picture beach = new Picture("C:\\Users\\AaronTheNerd\\Glick_Aaron_apcsa-p33\\Unit16\\src\\images\\beach.jpg");
 	  Picture code = new Picture("C:\\Users\\AaronTheNerd\\Glick_Aaron_apcsa-p33\\Unit16\\src\\images\\msg.jpg");
 	  beach.explore();
-	  beach.encode2(code);
+	  beach.encode(code);
 	  beach.explore();
-	  Picture decoded = beach.decode2();
-	  decoded.explore();
+	  beach.decode();
 	  
 	  
   }
