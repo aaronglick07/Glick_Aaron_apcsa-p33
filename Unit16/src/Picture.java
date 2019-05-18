@@ -96,29 +96,37 @@ public class Picture extends SimplePicture {
 		int openSpacesLeft = messagePixels.length * messagePixels[0].length;
 		boolean spacesMap[] = new boolean[openSpacesLeft];
 		java.util.Arrays.fill(spacesMap, false);
-		for (int y = 0; y < messagePixels.length; y++) {
-			for (int x = 0; x < messagePixels[y].length; x++) {
+		for (int x = 0; x < messagePixels.length; x++) {
+			for (int y = 0; y < messagePixels[x].length; y++) {
 				int tempIndex = rand.nextInt(openSpacesLeft);
+				int index = tempIndex;
 				for (int i = 0; i < spacesMap.length; i++) {
 					if (!spacesMap[i]) {
 						tempIndex--;
+						if(tempIndex == 0){
+							index=i;
+						}
 					}
 				}
-				spacesMap[tempIndex] = true;
-				int encodingPosY = tempIndex / messagePixels.length;
-				int encodingPosX = tempIndex % messagePixels.length;
+				
+				spacesMap[index] = true;
+				int encodingPosY = index / messagePixels.length;
+				int encodingPosX = index % messagePixels.length;
 				openSpacesLeft--;
 				// changing the blue values now
 				Pixel currPixel = null;
 				Pixel messagePixel = null;
 				currPixel = currentPixels[encodingPosX][encodingPosY];
-				if (currPixel.getBlue() % 2 == 1)
+				if (currPixel.getBlue() % 2 == 1){
 					currPixel.setBlue(currPixel.getBlue() - 1);
-				messagePixel = messagePixels[encodingPosX][encodingPosY];
-				if (messagePixel.colorDistance(Color.BLACK) < 50)
+				}
+				messagePixel = messagePixels[x][y];
+				if (messagePixel.colorDistance(Color.BLACK) < 50){
 					currPixel.setBlue(currPixel.getRed() + 1);
+				}
 				
 			}
+			if(x % 20 == 0)System.out.println("Progress " + (1.0- (double) openSpacesLeft / (double)(messagePixels.length * messagePixels[0].length)) * 100.0 + "%");
 		}
 	}
 
@@ -130,32 +138,34 @@ public class Picture extends SimplePicture {
 		int openSpacesLeft = messagePixels.length * messagePixels[0].length;
 		boolean spacesMap[] = new boolean[openSpacesLeft];
 		java.util.Arrays.fill(spacesMap, false);
-		for (int y = 0; y < messagePixels.length; y++) {
-			for (int x = 0; x < messagePixels[y].length; x++) {
+		for (int x = 0; x < messagePixels.length; x++) {
+			for (int y = 0; y < messagePixels[x].length; y++) {
 				int tempIndex = rand.nextInt(openSpacesLeft);
+				int index = tempIndex;
 				for (int i = 0; i < spacesMap.length; i++) {
 					if (!spacesMap[i]) {
 						tempIndex--;
+						if(tempIndex == 0){
+							index=i;
+						}
 					}
 				}
-				spacesMap[tempIndex] = true;
-				int encodingPosY = tempIndex / messagePixels.length;
-				int encodingPosX = tempIndex - (messagePixels.length * encodingPosY);
+				spacesMap[index] = true;
+				int encodingPosY = index / messagePixels.length;
+				int encodingPosX = index - (messagePixels.length * encodingPosY);
 				openSpacesLeft--;
 				// extracting the blue values now
 				Pixel[][] currentPixels = this.getPixels2D();
-				messagePixels[x][y] = currentPixels[encodingPosX][encodingPosY];
+				//messagePixels[x][y] = currentPixels[encodingPosX][encodingPosY];
 				if (currentPixels[encodingPosX][encodingPosY].getBlue() % 2 == 0) {
-					messagePixels[x][y].setBlue(0);
-					messagePixels[x][y].setGreen(0);
-					messagePixels[x][y].setRed(0);
+					messagePixels[x][y].setColor(Color.BLACK);
 				}
 				else{
-					messagePixels[x][y].setBlue(255);
-					messagePixels[x][y].setGreen(255);
-					messagePixels[x][y].setRed(255);
+					messagePixels[x][y].setColor(Color.WHITE);
+					
 				}
 			}
+			if(x % 20 == 0)System.out.println("Progress " + (1.0 - (double) openSpacesLeft / (double)(messagePixels.length * messagePixels[0].length)) * 100.0 + "%");
 		}
 		return messagePicture;
 	}

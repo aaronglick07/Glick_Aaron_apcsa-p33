@@ -162,10 +162,12 @@ public class PictureTester
   public static void testEncode(){
 	  Picture beach = new Picture("C:\\Users\\AaronTheNerd\\Glick_Aaron_apcsa-p33\\Unit16\\src\\images\\beach.jpg");
 	  Picture code = new Picture("C:\\Users\\AaronTheNerd\\Glick_Aaron_apcsa-p33\\Unit16\\src\\images\\msg.jpg");
+	  code.explore();
 	  beach.explore();
 	  beach.encode(code);
 	  beach.explore();
-	  beach.decode();
+	 Picture message = beach.decode();
+	 message.explore();
 	  
 	  
   }
