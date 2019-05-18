@@ -2,6 +2,7 @@ import java.awt.*;
 import java.awt.font.*;
 import java.awt.geom.*;
 import java.awt.image.BufferedImage;
+import java.lang.reflect.Array;
 import java.text.*;
 import java.util.*;
 import java.util.List; // resolves problem with java.awt.List and java.util.List
@@ -85,67 +86,142 @@ public class Picture extends SimplePicture {
 
 	}
 
-	
-	public void encode(Picture messagePict){
-		Random seed = new Random();
-		int seedEncode = 14;
-		String binary = Integer.toBinaryString(seedEncode);
-		String paddingZeros = "";
-		for (int i = 0; i < 4 - binary.length(); i++) {
-			paddingZeros+="0";
-		}
-		binary = paddingZeros + binary;
-		boolean topLeft = binary.substring(0,1).equals("1");
-		boolean topRight = binary.substring(1,2).equals("1");
-		boolean BottomRight = binary.substring(2,3).equals("1");
-		boolean BottomLeft = binary.substring(3,4).equals("1");
-		//Pixel[][] messagePixels = messagePict.getPixels2D();
+	public void encode(Picture messagePict) {
+		Random seedGenerator = new Random();
+		int seed = seedGenerator.nextInt(16);
+		encodeSeed(seed);
+		Random rand = new Random(seed);
+		Pixel[][] messagePixels = messagePict.getPixels2D();
 		Pixel[][] currentPixels = this.getPixels2D();
-		if(currentPixels[0][0].getBlue() % 2 == 1){
-			currentPixels[0][0].setBlue(currentPixels[0][0].getBlue()+1);
+		int openSpacesLeft = messagePixels.length * messagePixels[0].length;
+		boolean spacesMap[] = new boolean[openSpacesLeft];
+		java.util.Arrays.fill(spacesMap, false);
+		for (int y = 0; y < messagePixels.length; y++) {
+			for (int x = 0; x < messagePixels[y].length; x++) {
+				int tempIndex = rand.nextInt(openSpacesLeft);
+				for (int i = 0; i < spacesMap.length; i++) {
+					if (!spacesMap[i]) {
+						tempIndex--;
+					}
+				}
+				spacesMap[tempIndex] = true;
+				int encodingPosY = tempIndex / messagePixels.length;
+				int encodingPosX = tempIndex % messagePixels.length;
+				openSpacesLeft--;
+				// changing the blue values now
+				Pixel currPixel = null;
+				Pixel messagePixel = null;
+				currPixel = currentPixels[encodingPosX][encodingPosY];
+				if (currPixel.getBlue() % 2 == 1)
+					currPixel.setBlue(currPixel.getBlue() - 1);
+				messagePixel = messagePixels[encodingPosX][encodingPosY];
+				if (messagePixel.colorDistance(Color.BLACK) < 50)
+					currPixel.setBlue(currPixel.getRed() + 1);
+				
+			}
 		}
-		if(currentPixels[currentPixels.length-1][0].getBlue() % 2 == 1){
-			currentPixels[currentPixels.length-1][0].setBlue(currentPixels[currentPixels.length-1][0].getBlue()+1);
-		}
-		if(currentPixels[currentPixels.length-1][currentPixels[0].length-1].getBlue() % 2 == 1){
-			currentPixels[currentPixels.length-1][currentPixels[0].length-1].setBlue(currentPixels[currentPixels.length-1][currentPixels[0].length-1].getBlue()+1);
-		}
-		if(currentPixels[0][currentPixels[0].length-1].getBlue() % 2 == 1){
-			currentPixels[0][currentPixels[0].length-1].setBlue(currentPixels[0][currentPixels[0].length-1].getBlue()+1);
-		}
-		if(topLeft){
-			currentPixels[0][0].setBlue(currentPixels[0][0].getBlue()+1);
-		}
-		if(topRight){
-			currentPixels[currentPixels.length-1][0].setBlue(currentPixels[currentPixels.length-1][0].getBlue()+1);
-		}
-		if(BottomRight){
-			currentPixels[currentPixels.length-1][currentPixels[0].length-1].setBlue(currentPixels[currentPixels.length-1][currentPixels[0].length-1].getBlue()+1);
-		}
-		if(BottomLeft){
-			currentPixels[0][currentPixels[0].length-1].setBlue(currentPixels[0][currentPixels[0].length-1].getBlue()+1);
-		}
-		System.out.println(seedEncode);
 	}
-	public Picture decode(){
+
+	public Picture decode() {
+		int seed = getSeed();
+		Random rand = new Random(seed);
+		Picture messagePicture = new Picture(this.getHeight(), this.getWidth());
+		Pixel[][] messagePixels = messagePicture.getPixels2D();
+		int openSpacesLeft = messagePixels.length * messagePixels[0].length;
+		boolean spacesMap[] = new boolean[openSpacesLeft];
+		java.util.Arrays.fill(spacesMap, false);
+		for (int y = 0; y < messagePixels.length; y++) {
+			for (int x = 0; x < messagePixels[y].length; x++) {
+				int tempIndex = rand.nextInt(openSpacesLeft);
+				for (int i = 0; i < spacesMap.length; i++) {
+					if (!spacesMap[i]) {
+						tempIndex--;
+					}
+				}
+				spacesMap[tempIndex] = true;
+				int encodingPosY = tempIndex / messagePixels.length;
+				int encodingPosX = tempIndex - (messagePixels.length * encodingPosY);
+				openSpacesLeft--;
+				// extracting the blue values now
+				Pixel[][] currentPixels = this.getPixels2D();
+				messagePixels[x][y] = currentPixels[encodingPosX][encodingPosY];
+				if (currentPixels[encodingPosX][encodingPosY].getBlue() % 2 == 0) {
+					messagePixels[x][y].setBlue(0);
+					messagePixels[x][y].setGreen(0);
+					messagePixels[x][y].setRed(0);
+				}
+				else{
+					messagePixels[x][y].setBlue(255);
+					messagePixels[x][y].setGreen(255);
+					messagePixels[x][y].setRed(255);
+				}
+			}
+		}
+		return messagePicture;
+	}
+
+	public int getSeed() {
 		Pixel[][] pixels = this.getPixels2D();
 		int seedTotal = 0;
-		if(pixels[0][0].getBlue() % 2 == 1){
+		if (pixels[0][0].getBlue() % 2 == 1) {
 			seedTotal += 8;
 		}
-		if(pixels[pixels.length - 1][0].getBlue() % 2 == 1){
+		if (pixels[pixels.length - 1][0].getBlue() % 2 == 1) {
 			seedTotal += 4;
 		}
-		if(pixels[pixels.length - 1][pixels[0].length-1].getBlue() % 2 == 1){
+		if (pixels[pixels.length - 1][pixels[0].length - 1].getBlue() % 2 == 1) {
 			seedTotal += 2;
 		}
-		if(pixels[0][pixels[0].length-1].getBlue() % 2 == 1){
+		if (pixels[0][pixels[0].length - 1].getBlue() % 2 == 1) {
 			seedTotal += 1;
 		}
-		System.out.println(seedTotal);
-		return null;
+		return seedTotal;
 	}
-	
+
+	public void encodeSeed(int seed) {
+		String binary = Integer.toBinaryString(seed);
+		String paddingZeros = "";
+		for (int i = 0; i < 4 - binary.length(); i++) {
+			paddingZeros += "0";
+		}
+		binary = paddingZeros + binary;
+		boolean topLeft = binary.substring(0, 1).equals("1");
+		boolean topRight = binary.substring(1, 2).equals("1");
+		boolean BottomRight = binary.substring(2, 3).equals("1");
+		boolean BottomLeft = binary.substring(3, 4).equals("1");
+		Pixel[][] currentPixels = this.getPixels2D();
+		if (currentPixels[0][0].getBlue() % 2 == 1) {
+			currentPixels[0][0].setBlue(currentPixels[0][0].getBlue() + 1);
+		}
+		if (currentPixels[currentPixels.length - 1][0].getBlue() % 2 == 1) {
+			currentPixels[currentPixels.length - 1][0]
+					.setBlue(currentPixels[currentPixels.length - 1][0].getBlue() + 1);
+		}
+		if (currentPixels[currentPixels.length - 1][currentPixels[0].length - 1].getBlue() % 2 == 1) {
+			currentPixels[currentPixels.length - 1][currentPixels[0].length - 1]
+					.setBlue(currentPixels[currentPixels.length - 1][currentPixels[0].length - 1].getBlue() + 1);
+		}
+		if (currentPixels[0][currentPixels[0].length - 1].getBlue() % 2 == 1) {
+			currentPixels[0][currentPixels[0].length - 1]
+					.setBlue(currentPixels[0][currentPixels[0].length - 1].getBlue() + 1);
+		}
+		if (topLeft) {
+			currentPixels[0][0].setBlue(currentPixels[0][0].getBlue() + 1);
+		}
+		if (topRight) {
+			currentPixels[currentPixels.length - 1][0]
+					.setBlue(currentPixels[currentPixels.length - 1][0].getBlue() + 1);
+		}
+		if (BottomRight) {
+			currentPixels[currentPixels.length - 1][currentPixels[0].length - 1]
+					.setBlue(currentPixels[currentPixels.length - 1][currentPixels[0].length - 1].getBlue() + 1);
+		}
+		if (BottomLeft) {
+			currentPixels[0][currentPixels[0].length - 1]
+					.setBlue(currentPixels[0][currentPixels[0].length - 1].getBlue() + 1);
+		}
+	}
+
 	public void encodeOG(Picture messagePict) {
 		Pixel[][] messagePixels = messagePict.getPixels2D();
 		Pixel[][] currPixels = this.getPixels2D();
@@ -192,7 +268,6 @@ public class Picture extends SimplePicture {
 		return messagePicture;
 	}
 
-	
 	/** Method to set the blue to 0 */
 	public void zeroBlue() {
 		Pixel[][] pixels = this.getPixels2D();
@@ -436,7 +511,7 @@ public class Picture extends SimplePicture {
 	 * Main method for testing - each class in Java can have a main method
 	 */
 	public static void main(String[] args) {
-		
+
 	}
 
 	public void keepOnlyBlue() {
