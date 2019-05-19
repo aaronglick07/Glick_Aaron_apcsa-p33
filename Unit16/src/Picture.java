@@ -96,28 +96,19 @@ public class Picture extends SimplePicture {
 		int openSpacesLeft = messagePixels.length * messagePixels[0].length;
 		boolean spacesMap[] = new boolean[openSpacesLeft];
 		java.util.Arrays.fill(spacesMap, false);
-		long totalTime =0;
-		int ticks = 0;
 		for (int x = 0; x < messagePixels.length; x++) {
 			for (int y = 0; y < messagePixels[x].length; y++) {
 				int tempIndex = rand.nextInt(openSpacesLeft);
 				int index = tempIndex;
-				long start = System.nanoTime();
 				for (int i = 0; i < spacesMap.length; i++) {
 					if (!spacesMap[i]) {
 						tempIndex--;
 						if(tempIndex == 0){
 							index=i;
-							i = spacesMap.length;
 						}
 					}
 				}
-//				totalTime+=System.nanoTime()-start;
-//				ticks++;
-//				if(ticks == 20_000){
-//					System.out.println(totalTime/20_000);
-//				}
-				//System.out.println(System.nanoTime() - start);
+				
 				spacesMap[index] = true;
 				int encodingPosY = index / messagePixels.length;
 				int encodingPosX = index % messagePixels.length;
@@ -135,7 +126,6 @@ public class Picture extends SimplePicture {
 				}
 				
 			}
-			
 			if(x % 20 == 0)System.out.println("Progress " + (1.0- (double) openSpacesLeft / (double)(messagePixels.length * messagePixels[0].length)) * 100.0 + "%");
 		}
 	}
@@ -157,17 +147,16 @@ public class Picture extends SimplePicture {
 						tempIndex--;
 						if(tempIndex == 0){
 							index=i;
-							i = spacesMap.length;
 						}
 					}
 				}
 				spacesMap[index] = true;
 				int encodingPosY = index / messagePixels.length;
-				int encodingPosX = index - (messagePixels.length * encodingPosY);
+				int encodingPosX = index % messagePixels.length;
 				openSpacesLeft--;
 				// extracting the blue values now
 				Pixel[][] currentPixels = this.getPixels2D();
-				//messagePixels[x][y] = currentPixels[encodingPosX][encodingPosY];
+				messagePixels[x][y] = currentPixels[encodingPosX][encodingPosY];
 				if (currentPixels[encodingPosX][encodingPosY].getBlue() % 2 == 0) {
 					messagePixels[x][y].setColor(Color.BLACK);
 				}
