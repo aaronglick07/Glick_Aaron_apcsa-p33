@@ -160,15 +160,24 @@ public class PictureTester
     swan.explore();
   }
   public static void testEncode(){
-	  Picture beach = new Picture("C:\\Users\\AaronTheNerd\\Glick_Aaron_apcsa-p33\\Unit16\\src\\images\\beach.jpg");
-	  Picture code = new Picture("C:\\Users\\AaronTheNerd\\Glick_Aaron_apcsa-p33\\Unit16\\src\\images\\msg.jpg");
-	  code.explore();
-	  beach.explore();
-	  beach.encode(code);
-	  beach.explore();
-	 Picture message = beach.decode();
-	 message.explore();
-	  
+	  //message
+//	  Picture beach = new Picture("src\\images\\beach.jpg");
+//	  Picture code = new Picture("src\\images\\msg.jpg");
+//	  code.explore();
+//	  beach.explore();
+//	  beach.encode(code);
+//	  beach.explore();
+//	 Picture message = beach.decode();
+//	 message.explore();
+	 //apple
+	 Picture beach2 = new Picture("src\\images\\beach.jpg");
+	 Picture apple = new Picture("src\\images\\appleImage.png");
+	 apple.explore();
+	 beach2.explore();
+	 beach2.encode(apple);
+	 beach2.explore();
+	 Picture message2 = beach2.decode();
+	 message2.explore();
 	  
   }
   
